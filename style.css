@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: all .3s ease;
+  user-select: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  width: 100vw;
+  background-color: #000;
+  height: 100vh;
+  font-family: 'Orbitron', sans-serif;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#reloadBackground {
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  color: #fff;
+  font-size: 3rem;
+  cursor: pointer;
+}
+
+#reloadBackground:hover {
+  color: #e09f10;
+  transform: rotateZ(180deg);
+}
