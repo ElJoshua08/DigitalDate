@@ -48,6 +48,14 @@ function setNumber(container, number) {
   let $digits = container.querySelectorAll('.digit');
   $digits.forEach((digit, index) => {
     let $number = digit.getElementsByClassName(parsedNumber[index])[0];
+    if ($number.classList.contains("active")) return;
+    let $numbers = digit.querySelectorAll('.number');
+    $numbers.forEach((number) => {
+      number.classList.remove('active');
+    });
+
+    $number.classList.add('active');
+
     let digitRect = digit.getBoundingClientRect();
     let numberRect = $number.getBoundingClientRect();
 
