@@ -46,21 +46,16 @@ function setDigits(container, digitNumber) {
 function setNumber(container, number) {
   let parsedNumber = number.toString().split('');
   let $digits = container.querySelectorAll('.digit');
+
   $digits.forEach((digit, index) => {
     let $number = digit.getElementsByClassName(parsedNumber[index])[0];
-    if ($number.classList.contains("active")) return;
-    let $numbers = digit.querySelectorAll('.number');
-    $numbers.forEach((number) => {
-      number.classList.remove('active');
-    });
 
-    $number.classList.add('active');
+    // Calculate the position of the number relative to the digit container
+    let numberPosition = $number.offsetTop - digit.offsetTop;
 
-    let digitRect = digit.getBoundingClientRect();
-    let numberRect = $number.getBoundingClientRect();
-
+    // Set the scroll position to align the number at the center of the digit container
     digit.scrollTo({
-      top: numberRect.top - digitRect.top,
+      top: numberPosition - (digit.clientHeight - $number.clientHeight) / 2,
       behavior: 'smooth',
     });
   });
@@ -93,9 +88,9 @@ function setHour() {
 }
 
 window.addEventListener('load', () => {
-  setDate();
   createClock();
   setInterval(() => {
+    setDate();
     setHour();
   }, 1000);
 });
