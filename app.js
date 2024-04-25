@@ -13,7 +13,6 @@ let months = {
   12: 'December',
 };
 
-
 function setDate() {
   let $date = document.getElementById('date');
   let currentDate = new Date();
@@ -43,15 +42,32 @@ function setDigits(container, digitNumber) {
   }
 }
 
+function setDisplayHeight() {
+  let $container = document.getElementById('time');
+  let $time = document.getElementById('hours');
+  let $number = $time
+    .getElementsByClassName('digit')[0]
+    .getElementsByClassName('0')[0];
+  let numberRect = $number.getBoundingClientRect();
+
+
+
+
+  // Set the height of the container to the height of the number
+  $container.style.height = `${numberRect.height + 30}px`;
+}
+
 function setNumber(container, number) {
   let parsedNumber = number.toString().split('');
   let $digits = container.querySelectorAll('.digit');
+
 
   $digits.forEach((digit, index) => {
     let $number = digit.getElementsByClassName(parsedNumber[index])[0];
 
     // Calculate the position of the number relative to the digit container
     let numberPosition = $number.offsetTop - digit.offsetTop;
+
 
     // Set the scroll position to align the number at the center of the digit container
     digit.scrollTo({
@@ -60,6 +76,7 @@ function setNumber(container, number) {
     });
   });
 }
+
 function createClock() {
   let $hours = document.getElementById('hours');
   let $minutes = document.getElementById('minutes');
@@ -80,8 +97,8 @@ function setHour() {
   let formattedMinutes = ('0' + currentHour.getMinutes()).slice(-2);
   let formattedSeconds = ('0' + currentHour.getSeconds()).slice(-2);
 
-  setNumber($hour, formattedHours)
-  setNumber($minutes, formattedMinutes)
+  setNumber($hour, formattedHours);
+  setNumber($minutes, formattedMinutes);
   setNumber($seconds, formattedSeconds);
 
   console.log(formattedHours, formattedMinutes, formattedSeconds);
@@ -89,8 +106,13 @@ function setHour() {
 
 window.addEventListener('load', () => {
   createClock();
+  setDisplayHeight();
   setInterval(() => {
     setDate();
     setHour();
   }, 1000);
+});
+
+window.addEventListener('resize', () => {
+  setDisplayHeight();
 });
