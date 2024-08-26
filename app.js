@@ -13,6 +13,13 @@ let months = {
   12: 'December',
 };
 
+document.addEventListener('load', () => {
+  // Check if the user prefers dark mode
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.classList.add('dark');
+  }
+});
+
 function setDate() {
   let $date = document.getElementById('date');
   let currentDate = new Date();
@@ -50,9 +57,6 @@ function setDisplayHeight() {
     .getElementsByClassName('0')[0];
   let numberRect = $number.getBoundingClientRect();
 
-
-
-
   // Set the height of the container to the height of the number
   $container.style.height = `${numberRect.height + 30}px`;
 }
@@ -61,13 +65,11 @@ function setNumber(container, number) {
   let parsedNumber = number.toString().split('');
   let $digits = container.querySelectorAll('.digit');
 
-
   $digits.forEach((digit, index) => {
     let $number = digit.getElementsByClassName(parsedNumber[index])[0];
 
     // Calculate the position of the number relative to the digit container
     let numberPosition = $number.offsetTop - digit.offsetTop;
-
 
     // Set the scroll position to align the number at the center of the digit container
     digit.scrollTo({

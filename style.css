@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Subrayada:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap');
 
+:root {
+  --primary-color: #e09f10;
+  --secondary-color: ##1051e0;
+  --accent-color: ##f0b533;
+  --background-color: #fff;
+
+  .dark {
+    --primary-color: #e09f10;
+    --secondary-color: ##1051e0;
+    --accent-color: ##f0b533;
+    --background-color: #000;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -16,7 +30,7 @@ html {
 
 body {
   width: 100vw;
-  background-color: #000;
+  background-color: var(--background-color);
   height: 100vh;
   font-family: 'Orbitron', sans-serif;
   background-size: cover;
@@ -32,14 +46,13 @@ body {
   position: fixed;
   bottom: 15px;
   right: 15px;
-  color: #fff;
+  color: var(--secondary-color);
   font-size: 5rem;
   cursor: pointer;
-}
 
-#reloadBackground:hover {
-  color: #e09f10;
-  transform: rotateZ(180deg);
+  &:hover {
+    color: var(--accent-color);
+  }
 }
 
 .container {
